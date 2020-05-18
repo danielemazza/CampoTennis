@@ -59,13 +59,21 @@
 		String accedi="false";
 		String livello = null;
 		String err = null;
-			if(request.getParameter("accedi")!=null && request.getParameter("accedi").equals("Accedi")){
-				Utente accesso = new Utente();
-				accesso.setUserName(request.getParameter("user"));
-				accesso.setPsw(request.getParameter("psw"));
-				accedi = accedi(accesso, userList);
-				livello = livello(accesso, userList);
+		if(request.getParameter("accedi")!=null && request.getParameter("accedi").equals("Accedi")){
+			if(request.getParameter("user").equals("admin")){
+				request.getSession(true);
+				session.setAttribute("user", request.getParameter("user"));
+				response.sendRedirect("admin.jsp");
+			}
+			else{
+			Utente accesso = new Utente();
+			accesso.setUserName(request.getParameter("user"));
+			accesso.setPsw(request.getParameter("psw"));
+			accedi = accedi(accesso, userList);
+			livello = livello(accesso, userList);
+			}
 		}
+		
 		if(accedi=="true"){
 			request.getSession();
 			session.setAttribute("user", request.getParameter("user"));
@@ -75,6 +83,10 @@
 		else {
 			err = "user nno trovato";
 		}
+		
+	/* 	if(request.getParameter("user").equals("admin")){
+			response.sendRedirect("admin.jsp");
+		} */
 	
 %>
 

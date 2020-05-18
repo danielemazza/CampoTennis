@@ -19,7 +19,7 @@ String registrati(Utente u, UserList ul) throws Exception
 	for(Utente utenteRegistrato : ul.getUserList() ){
 		if((utenteRegistrato.getUserName().equals(u.getUserName()))&&(utenteRegistrato.getPsw().equals(u.getPsw()))){
 			alreadyReg=true;
-			throw new Exception ("Utente già registrato");
+			//throw new Exception ("Utente già registrato");
 		}
 	}
 	
